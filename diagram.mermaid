@@ -1,0 +1,218 @@
+classDiagram
+    %% Interfaces
+    class IDisplayable {
+        <<interface>>
+        +DisplayInfo()
+    }
+    
+    class IBookable {
+        <<interface>>
+        +IsBooked() bool
+        +Book(userId: int)
+        +CancelBooking()
+    }
+
+    %% Abstract Classes
+    class Person {
+        <<abstract>>
+        +Id: int
+        +Name: string
+        +IdType: string
+        +Phone: string
+        #Password: string
+        +Email: string
+        #personCount: int$
+        #Person()
+        #Person(id, name, phone, email, password)
+        +SetName(name: string)
+        +GetName() string
+        +SetPhone(phone: string)
+        +GetPhone() string
+        +SetEmail(email: string)
+        +GetEmail() string
+        +SetPassword(password: string)
+        +GetPassword() string
+        +GetPersonCount()$ int
+        +DisplayRole()*
+        +DisplayInfo()
+    }
+
+    class Seat {
+        <<abstract>>
+        +Id: int
+        +SeatId: int
+        +Booked: bool
+        +SeatType: string
+        +FilmId: int
+        +BookerUserId: int
+        +Price: decimal*
+        #Seat(id, seatId, seatType)
+        +IsBooked() bool
+        +Book(userId: int)
+        +CancelBooking()
+    }
+
+    %% Concrete Classes - Person Hierarchy
+    class Customer {
+        +FilmId: int
+        +TicketId: int
+        +Date: DateTime
+        +History: string
+        +HallId: int
+        +SeatId: int
+        +Customer()
+        +Customer(id, name, phone, email, password)
+        +DisplayRole()
+        +DisplayInfo()
+        +BuyTicket(ticket: Ticket)
+    }
+
+    class Employee {
+        +JobTitle: string
+        +Department: string
+        +Salary: decimal
+        +Employee(id, name, jobTitle, department, salary)
+        +DisplayRole()
+        +DisplayData(userId: int)
+    }
+
+    %% Concrete Classes - Seat Hierarchy
+    class RegularSeat {
+        -price: decimal
+        +Price: decimal
+        +RegularSeat(id, seatId)
+    }
+
+    class VIPSeat {
+        -price: decimal
+        +Price: decimal
+        +VIPSeat(id, seatId)
+    }
+
+    class PremiumSeat {
+        -price: decimal
+        +Price: decimal
+        +PremiumSeat(id, seatId)
+    }
+
+    %% Other Classes
+    class Film {
+        +Id: int
+        +Name: string
+        +ShowedAt: DateTime
+        +Duration: int
+        +HallId: int
+        +Film(id, name, duration, hallId)
+        +AddFilm(name: string)
+        +AddShowedAt(time: DateTime)
+        +RemoveFilm()
+        +DisplayInfo()
+    }
+
+    class Hall {
+        -id: int
+        -name: string
+        -workingTime: TimeSpan
+        -isWorking: bool
+        +Id: int
+        +Name: string
+        +WorkingTime: TimeSpan
+        +IsWorking: bool
+        +Hall(id, name)
+        +AddHall()
+    }
+
+    class Ticket {
+        +Id: int
+        +TicketType: string
+        +Price: decimal
+        +SeatId: int
+        +UserId: int
+        +FilmId: int
+        +SeatNum: int
+        +Booked: bool
+        +Ticket(id, type, price, seatId)
+        +SetSeatId(seatId: int)
+        +SetFilmId(filmId: int)
+        +SetUserId(userId: int)
+        +IsBooked() bool
+        +Book(userId: int)
+        +CancelBooking()
+    }
+
+    class Database {
+        -_instance: Database$
+        +Instance: Database$
+        +Customers: List~Customer~
+        +Employees: List~Employee~
+        +Halls: List~Hall~
+        +Films: List~Film~
+        +Seats: List~Seat~
+        +Tickets: List~Ticket~
+        -Database()
+        -InitializeData()
+    }
+
+    %% Menu Classes
+    class MainMenu {
+        -customerMenu: CustomerMenu
+        -employeeMenu: EmployeeMenu
+        -systemStatisticsMenu: SystemStatisticsMenu
+        +MainMenu()
+        +Show()
+    }
+
+    class CustomerMenu {
+        +Show()
+        -RegisterCustomer()
+        -LoginCustomer()
+        -ViewFilms()
+        -BookTicket()
+        -ViewBookings()
+        -CancelBooking()
+    }
+
+    class EmployeeMenu {
+        +Show()
+        -ViewAllCustomers()
+        -ViewAllBookings()
+        -AddFilm()
+        -RemoveFilm()
+    }
+
+    class SystemStatisticsMenu {
+        +Show()
+    }
+
+    %% Inheritance Relationships
+    Person <|-- Customer
+    Person <|-- Employee
+    Seat <|-- RegularSeat
+    Seat <|-- VIPSeat
+    Seat <|-- PremiumSeat
+
+    %% Interface Implementation
+    IDisplayable <|.. Person
+    IDisplayable <|.. Customer
+    IDisplayable <|.. Employee
+    IDisplayable <|.. Film
+    IBookable <|.. Seat
+    IBookable <|.. Ticket
+
+    %% Associations
+    Customer --> Ticket : buys
+    Ticket --> Seat : references
+    Ticket --> Film : for
+    Film --> Hall : shown in
+    Database o-- Customer
+    Database o-- Employee
+    Database o-- Hall
+    Database o-- Film
+    Database o-- Seat
+    Database o-- Ticket
+    MainMenu --> CustomerMenu
+    MainMenu --> EmployeeMenu
+    MainMenu --> SystemStatisticsMenu
+    CustomerMenu ..> Database
+    EmployeeMenu ..> Database
+    SystemStatisticsMenu ..> Database

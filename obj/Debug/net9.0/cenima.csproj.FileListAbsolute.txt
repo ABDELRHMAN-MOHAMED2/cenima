@@ -1,0 +1,14 @@
+D:\cinema_managemet_system\cenima\cenima\bin\Debug\net9.0\cenima.exe
+D:\cinema_managemet_system\cenima\cenima\bin\Debug\net9.0\cenima.deps.json
+D:\cinema_managemet_system\cenima\cenima\bin\Debug\net9.0\cenima.runtimeconfig.json
+D:\cinema_managemet_system\cenima\cenima\bin\Debug\net9.0\cenima.dll
+D:\cinema_managemet_system\cenima\cenima\bin\Debug\net9.0\cenima.pdb
+D:\cinema_managemet_system\cenima\cenima\obj\Debug\net9.0\cenima.GeneratedMSBuildEditorConfig.editorconfig
+D:\cinema_managemet_system\cenima\cenima\obj\Debug\net9.0\cenima.AssemblyInfoInputs.cache
+D:\cinema_managemet_system\cenima\cenima\obj\Debug\net9.0\cenima.AssemblyInfo.cs
+D:\cinema_managemet_system\cenima\cenima\obj\Debug\net9.0\cenima.csproj.CoreCompileInputs.cache
+D:\cinema_managemet_system\cenima\cenima\obj\Debug\net9.0\cenima.dll
+D:\cinema_managemet_system\cenima\cenima\obj\Debug\net9.0\refint\cenima.dll
+D:\cinema_managemet_system\cenima\cenima\obj\Debug\net9.0\cenima.pdb
+D:\cinema_managemet_system\cenima\cenima\obj\Debug\net9.0\cenima.genruntimeconfig.cache
+D:\cinema_managemet_system\cenima\cenima\obj\Debug\net9.0\ref\cenima.dll
